@@ -36,8 +36,8 @@ export async function GET({ url }) {
 		const endTime = Date.now();
 		const pingTime = endTime - startTime;
 		
-		// Check if response is successful (2xx or 3xx status codes)
-		const isUp = response.ok || (response.status >= 300 && response.status < 400);
+		// Check if response is successful (2xx status codes only)
+		const isUp = response.ok;
 		
 		return json({
 			status: isUp ? 'up' : 'down',
@@ -53,7 +53,10 @@ export async function GET({ url }) {
 		
 		if (error.name === 'AbortError') {
 			errorMessage = 'Request timeout (10s)';
-		} else if (error.message.includes('fetch')) {
+		} else if (error.cause && error.cause.code) {
+			// Network-related errors often have error codes
+			errorMessage = `Network error: ${error.cause.code}`;
+		} else if (error instanceof TypeError) {
 			errorMessage = 'Network error or unreachable';
 		} else {
 			errorMessage = error.message;
