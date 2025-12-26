@@ -1,0 +1,22 @@
+{
+  "name": "pingpage",
+  "version": "1.0.0",
+  "description": "Check a page's ping in an iframe.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@sveltejs/adapter-vercel": "^6.2.0",
+    "@sveltejs/kit": "^2.49.2",
+    "prettier": "^3.7.4",
+    "prettier-plugin-svelte": "^3.4.1",
+    "svelte": "^5.46.1",
+    "vite": "^7.3.0"
+  }
+}
