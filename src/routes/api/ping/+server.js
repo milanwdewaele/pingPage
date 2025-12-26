@@ -53,7 +53,7 @@ export async function GET({ url }) {
 		
 		if (error.name === 'AbortError') {
 			errorMessage = 'Request timeout (10s)';
-		} else if (error.cause && error.cause.code) {
+		} else if (error.cause && typeof error.cause === 'object' && error.cause.code) {
 			// Network-related errors often have error codes
 			errorMessage = `Network error: ${error.cause.code}`;
 		} else if (error instanceof TypeError) {
